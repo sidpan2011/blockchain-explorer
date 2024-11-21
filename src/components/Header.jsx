@@ -47,7 +47,7 @@ const Header = () => {
                 </nav>
             </div>
             <div className='flex items-center space-x-4'>
-                <Button>Connect Wallet</Button>
+                <Button variant="outline">Connect Wallet</Button>
                 <Button size="icon" variant="outline" className="p-4 rounded-full"><Bell /> </Button>
                 <ModeToggle />
             </div>

@@ -1,16 +1,30 @@
-// Dependencies: pnpm install lucide-react
-
-
 import { ArrowRight, Search } from "lucide-react";
-import { Label } from "./label";
 import { Input } from "./input";
+import { useEffect, useRef } from "react";
 
-export default function SearchInput() {
+export default function SearchInput({ setIsSearchOpen }) {
+  const searchRef = useRef(null);
+  useEffect(() => {
+    // Defining the handler function
+    function handleEscKey(event) {
+      if (event.key === "Escape") {
+        setIsSearchOpen(false);
+      }
+    }
+
+    // Adding the event listener for keydown
+    document.addEventListener("keydown", handleEscKey);
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [setIsSearchOpen]);
   return (
     <div className="space-y-2">
       {/* <Label htmlFor="input-26">Search input with icon and button</Label> */}
-      <div className="relative">
-        <Input id="input-26" className="peer pe-9 ps-9" placeholder="Search address, tx hash, block, etc." type="search" />
+      <div className="relative" ref={searchRef}>
+        <Input onFocus={() => setIsSearchOpen(true)} id="input-26" className="peer pe-9 ps-9" placeholder="Search address, tx hash, block, etc." type="search" />
         <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
           <Search size={16} strokeWidth={2} />
         </div>
