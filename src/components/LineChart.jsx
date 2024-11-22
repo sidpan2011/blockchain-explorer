@@ -32,7 +32,7 @@ CustomTooltip.displayName = 'CustomTooltip';
 export const LineChart = ({extraClassName}) => {
     return (
         <div className={`w-full ${extraClassName}`}>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" className={"aspect-square"}>
                 <RechartsLineChart
                     data={chartData}
                     margin={{
