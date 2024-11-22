@@ -31,6 +31,22 @@ export const TX_DATA = {
             "amount": "1.3044092812",
             "currency": "CHR",
             "timeAgo": "3 secs ago"
+        },
+        {
+            "hash": "0x0456...039423",
+            "from": "0xb3de...04913k",
+            "to": "0xc001...mc984c",
+            "amount": "1.3044092812",
+            "currency": "CHR",
+            "timeAgo": "3 secs ago"
+        },
+        {
+            "hash": "0x0456...039423",
+            "from": "0xb3de...04913k",
+            "to": "0xc001...mc984c",
+            "amount": "1.3044092812",
+            "currency": "CHR",
+            "timeAgo": "3 secs ago"
         }
     ],
     "blocks": [
@@ -54,6 +70,20 @@ export const TX_DATA = {
             "transactions": "4",
             "unit": "TXS",
             "timeAgo": "9 secs ago"
+        },
+        {
+            "number": "31892005",
+            "validator": "0xXXXX",
+            "transactions": "24",
+            "unit": "TXS",
+            "timeAgo": "12 secs ago"
+        },
+        {
+            "number": "31892005",
+            "validator": "0xXXXX",
+            "transactions": "24",
+            "unit": "TXS",
+            "timeAgo": "12 secs ago"
         },
         {
             "number": "31892005",

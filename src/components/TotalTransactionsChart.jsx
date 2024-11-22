@@ -26,7 +26,7 @@ export function TotalTransactionsChart() {
     return (
         <ChartContainer config={chartConfig} className="h-full w-full">
             <BarChart accessibilityLayer data={chartData}>
-                <CartesianGrid vertical={false} />
+                {/* <CartesianGrid vertical={false} /> */}
                 <XAxis
                     dataKey="month"
                     tickLine={false}
