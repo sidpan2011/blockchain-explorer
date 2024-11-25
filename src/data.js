@@ -98,5 +98,62 @@ export const TX_DATA = {
         "currency": "CHR",
         "usersStaking": "137,973",
         "circulatingSupply": "26,556,392"
-    }
+    },
+    "recent": [
+        {
+            "type": "block",
+            "value": "#31892005",
+            "description": "Block"
+        },
+        {
+            "type": "transaction",
+            "value": "HHJCp7c3Rr3SkqLQagrSvVMSUGor4izqJ5UKVfi8kWZV",
+            "description": "Transaction"
+        },
+        {
+            "type": "address",
+            "value": "0xeBD1E125E217ba11E590cC79529CF2BaE20aC71B",
+            "description": "Address"
+        },
+        {
+            "type": "validator",
+            "value": "ChromoX",
+            "description": "Validator"
+        },
+        {
+            "type": "block",
+            "value": "#31892008",
+            "description": "Latest Block"
+        },
+        {
+            "type": "transaction",
+            "value": "0xeBD1E125E217ba11E590cC79529CF2BaE20aC71B",
+            "description": "High Value Transaction"
+        },
+        {
+            "type": "validator",
+            "value": "Meta8",
+            "description": "Top Validator"
+        },
+        {
+            "type": "address",
+            "value": "bc1qxrsk933nujcyev70fcemp0607xhxa4dqclkau6",
+            "description": "Top Address"
+        },
+        {
+            "type": "block",
+            "value": "0xeBD1E125E217ba11E590cC79529CF2BaE20aC71B",
+            "description": "Latest Block"
+        },
+        {
+            "type": "transaction",
+            "value": "Block Monitoring",
+            "description": "High Value Transaction"
+        },
+        {
+            "type": "validator",
+            "value": "BrosCl",
+            "description": "Top Validator"
+        },
+    ],
 }

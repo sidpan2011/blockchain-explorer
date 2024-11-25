@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
+import React, { useEffect, useState } from 'react'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 import { TotalTransactionsChart } from './TotalTransactionsChart'
 import SearchInput from './ui/search-input'
 import { LineChart } from './LineChart'
-import WorldMapValidators from './WorldMapValidators'
+// import WorldMapValidators from './WorldMapValidators'
 import BarChartComponent from './BarGraph'
-import { ArrowDown, ArrowLeftRight, ArrowRight, ArrowUp, Box, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowDown, ArrowLeftRight, ArrowRight, ArrowUp, ArrowUpRight, Box, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { AiOutlineEnter } from "react-icons/ai";
 import { Link } from 'react-router-dom'
@@ -57,6 +57,23 @@ const Overview = () => {
             "timeStamp": "3"
         }
     ]
+    const [smallScreen, setSmallScreen] = useState(false)
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(max-width: 1280px)')
+
+        const handleChange = (e) => {
+            console.log("Media query changed:", e.matches)
+            setSmallScreen(e.matches)
+        }
+
+        // Set initial value
+        handleChange(mediaQuery)
+
+        // Add listener for changes
+        mediaQuery.addEventListener('change', handleChange)
+
+        return () => mediaQuery.removeEventListener('change', handleChange)
+    }, [])
 
     return (
         <main className='my-7'>
@@ -79,7 +96,7 @@ const Overview = () => {
                 </div>
             </div>
             <div className='flex flex-col xl:justify-between lg:flex-col xl:flex-row gap-4'>
-                <div className='w-full'>
+                <div className='xl:w-[700px]'>
                     <Card>
                         <CardHeader>
                             <CardTitle className="flex gap-3 flex-wrap">
@@ -101,21 +118,30 @@ const Overview = () => {
                             <CardHeader>
                                 <CardTitle>
                                     <h1>Blocks</h1>
+                                    <p className='text-md font-normal pt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, debitis ducimus doloremque dolor voluptates.</p>
                                 </CardTitle>
                             </CardHeader>
+                            <CardDescription>
+
+                            </CardDescription>
                             <CardContent className="w-full">
-                                <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-                                    <div>
-                                        <RadialGraph />
-                                    </div>
-                                    <div>
-                                        <RadialGraph />
-                                    </div>
-                                    <div>
-                                        <RadialGraph />
-                                    </div>
+                                <div className={`grid grid-cols-1 2xl:grid-cols-3 md:grid-cols-2 lg:grid-cols-2 gap-4 ${smallScreen ? '' : 'grid-cols-1'}`}>
+                                    {smallScreen ? (
+                                        <>
+                                            <div>
+                                                <RadialGraph />
+                                            </div>
+                                            <div>
+                                                <RadialGraph />
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div className="col-span-full">
+                                            <RadialGraph />
+                                        </div>
+                                    )}
                                 </div>
-                                
+
                             </CardContent>
                         </Card>
                     </div>
@@ -126,13 +152,20 @@ const Overview = () => {
                     </div>
 
                     {isSearchOpen ? (
-                        // Full height search results card
                         <div className="my-4">
-                            <Card className="h-full"> {/* Adjust the height as needed */}
-                                <CardHeader>
-                                    <CardTitle>Recent</CardTitle>
-                                </CardHeader>
-                                <CardContent>
+                            <Card className="h-full">
+                                <h1 className='text-muted-foreground/80 font-semibold py-4 px-5'>Top Searches</h1>
+                                <CardContent className="space-y-4">
+                                    <div>
+                                        {TX_DATA.recent.map((r, index) => (
+                                            <div key={index} className="flex flex-row items-center justify-between">
+                                                <p className="my-3 text-sm">{r.value}</p>
+                                                <ArrowUpRight />
+                                                {/* <p className="text-sm text-gray-600">{r.description}</p> */}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <h1 className='font-semibold text-muted-foreground/80'>Explore</h1>
                                     <div className='grid grid-cols-2 gap-4'>
                                         <div>
                                             <Card className="">
@@ -214,7 +247,7 @@ const Overview = () => {
                                         {
                                             TX_DATA.transactions.map((tx, index) => (
                                                 <div key={index} className='flex justify-between items-center space-y-3'>
-                                                    <div className='flex gap-4 items-center'>
+                                                    <div className='flex gap-4 space-y-4 xl:space-y-0 items-center'>
                                                         <Button variant="outline" size="icon" className="rounded-full cursor-default"><ArrowLeftRight /></Button>
                                                         <div className='flex flex-col'>
                                                             <Link to={`/tx/${tx.hash}`} className='text-primary'>
