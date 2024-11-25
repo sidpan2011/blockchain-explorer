@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 const Interface = () => {
   return (
-    <div className='mx-4 xl:mx-28'>
+    <div className='mx-4 2xl:mx-28'>
         <Header />
         <Overview />
         <Footer />
